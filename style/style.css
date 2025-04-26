@@ -1,0 +1,280 @@
+:root {
+  --purple-50: hsl(260, 100%, 95%);
+  --purple-300: hsl(264, 82%, 80%);
+  --purple-500: hsl(263, 55%, 52%);
+  --white: hsl(0, 0%, 100%);
+  --grey-100: hsl(214, 17%, 92%);
+  --grey-200: hsl(0, 0%, 81%);
+  --grey-400: hsl(224, 10%, 45%);
+  --grey-500: hsl(217, 19%, 35%);
+  --dark-blue: hsl(219, 29%, 14%);
+  --black: hsl(0, 0%, 7%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  background-color: var(--grey-100);
+}
+
+/* TYPOGRAPHY */
+
+.card__userStatus,
+.card__title {
+  margin-bottom: 1em;
+}
+
+.card__title,
+.card__description {
+  line-height: 1.5;
+}
+
+.card__userName {
+  font-size: 1.2rem;
+}
+
+.card__userStatus {
+  font-size: 1rem;
+}
+
+.card__title {
+  font-size: 1.5rem;
+}
+
+.card__description {
+  font-size: 1.1rem;
+}
+
+/* LAYOUT */
+
+/* Base style */
+
+.grid-card {
+  display: grid;
+  grid-template-columns: 2em 1fr 2em;
+  grid-template-rows: 2em repeat(5, auto) 2em;
+  grid-template-areas:
+    ". . ."
+    ". one ."
+    ". two ."
+    ". three ."
+    ". four ."
+    ". five ."
+    ". . .";
+}
+
+.card {
+  color: white;
+  margin-bottom: 2em;
+  padding: 2em 3em;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  grid-template-rows: 25px 25px min-content min-content;
+  grid-template-areas:
+    "userImg userN "
+    "userImg userS "
+    "title title "
+    "description description ";
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.card__image {
+  width: 45px;
+  border-radius: 50%;
+  grid-area: userImg;
+}
+
+.card__userName {
+  grid-area: userN;
+}
+
+.card__userStatus {
+  grid-area: userS;
+}
+
+.card__title {
+  grid-area: title;
+  margin-top: 0.5em;
+}
+
+.card__description {
+  grid-area: description;
+}
+
+/* card one */
+
+.card--one {
+  background-color: var(--purple-500);
+  grid-area: one;
+  position: relative;
+}
+
+.card__image--one {
+  border: 2px solid var(--purple-300);
+}
+
+.card__userName--one,
+.card__userStatus--one,
+.card__description--one {
+  color: var(--purple-50);
+}
+
+/* card two */
+
+.card--two {
+  background-color: var(--grey-500);
+  grid-area: two;
+}
+
+.card__image--two {
+  border: 2px solid var(--grey-200);
+}
+
+.card__userName--two {
+  color: var(--grey-100);
+}
+
+.card__userStatus--two,
+.card__description--two {
+  color: var(--grey-200);
+}
+
+/* card three */
+
+.card--three {
+  background-color: var(--white);
+  grid-area: three;
+}
+
+.card__image--three {
+  border: 2px solid var(--grey-200);
+}
+
+.card__userName--three,
+.card__userStatus-three {
+  color: var(--grey-400);
+}
+
+.card__title--three,
+.card__description--three {
+  color: var(--grey-500);
+}
+
+/* card four */
+
+.card--four {
+  background-color: var(--dark-blue);
+  grid-area: four;
+}
+
+.card__image--four {
+  border: 2px solid var(--purple-500);
+}
+
+.card--four > * {
+  color: var(--grey-200);
+}
+
+/* card five */
+
+.card--five {
+  background-color: white;
+  grid-area: five;
+  margin-bottom: 0;
+}
+
+.card__image--five {
+  border: 2px solid var(--grey-200);
+}
+
+.card__userName--five {
+  color: var(--grey-400);
+}
+
+.card__userStatus--five {
+  color: var(--grey-400);
+}
+
+.card__title--five,
+.card__description--five {
+  color: var(--grey-500);
+}
+
+/* media queries */
+
+@media (min-width: 600px) {
+  .grid-card {
+    grid-template-columns: 1em repeat(4, 1fr) 1em;
+    grid-template-rows: 1em repeat(4, auto) 1em;
+    gap: 20px;
+
+    grid-template-areas:
+      ". . . . . ."
+      ". one one two two ."
+      ". one one three three ."
+      ". four four five five ."
+      ". four four five five ."
+      ". . . . . . ";
+  }
+
+  .grid-card > * {
+    margin-bottom: 0;
+  }
+
+  .card {
+    padding: 1.5em 1.5em;
+  }
+
+  .card__title {
+    font-size: 1.25rem;
+  }
+
+  .card__description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  body {
+    display: grid;
+    min-height: 100vh;
+    place-content: center;
+  }
+  .grid-card {
+    grid-template-columns: 1fr repeat(4, minmax(250px, 1fr)) 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      ". one one  two  five ."
+      ". three  four four  five .";
+  }
+
+  .card {
+    padding: 0.75em 1em 0;
+  }
+
+  .card--one {
+    z-index: 1;
+  }
+
+  .card__description--one {
+    margin-bottom: 0.75em;
+  }
+
+  .card__userName--one::after {
+    content: "”";
+    position: absolute;
+    top: -30px;
+    right: 55px;
+    font-size: 12rem;
+    z-index: -1;
+    color: hsl(264, 100%, 89%);
+  }
+}
